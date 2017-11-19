@@ -1,0 +1,56 @@
+body, html {
+    height: 100%;
+    font-family: 'Noto Sans', sans-serif;
+}
+/* Parallax effect */
+.parallax {
+    /* The image used */
+    /* Full height */
+    height: 100%;
+
+    /* Create the parallax scrolling effect */
+    background: url("../media/first-image.jpg") no-repeat fixed center;
+    background-size: cover;
+}
+
+.second-parallax{
+    background-image: url("../media/second-image.jpg");
+}
+/* Parallax for mobile screens */
+@media only screen and (max-device-width: 1024px) {
+    .parallax {
+        background-attachment: scroll;
+    }
+}
+
+.menu{
+    background-color: gainsboro;
+    opacity: 0.8;
+}
+
+a{
+    color: black;
+}
+
+.welcome{
+    position: absolute;
+    top: 50%;
+    text-align: center;
+    width: 100%;
+    margin: -57px auto auto;
+    background-color: #2e3133;
+    color: white;
+}
+
+/* Settings for scroll */
+body::-webkit-scrollbar {
+    background-color: #2e3133;
+    width: 0.4em;
+}
+
+body::-webkit-scrollbar-track {
+}
+
+body::-webkit-scrollbar-thumb {
+    background-color: #464a4e;
+}
