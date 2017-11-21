@@ -32,7 +32,7 @@ a{
     color: black;
 }
 
-.welcome{
+.welcome, .register-form{
     position: absolute;
     top: 50%;
     text-align: center;
@@ -53,4 +53,15 @@ body::-webkit-scrollbar-track {
 
 body::-webkit-scrollbar-thumb {
     background-color: #464a4e;
+}
+
+.register-form{
+
+}
+
+.form-control{
+    width: 500px;
+    margin: auto;
+    text-align: center;
+    /*margin: -145px ;*/
 }

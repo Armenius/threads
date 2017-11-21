@@ -6,7 +6,7 @@
   "scripts": {
     "start": "budo index.js:bundle.js"
   },
-  "author": "Parmenion ",
+  "author": "parmenion",
   "license": "",
   "devDependencies": {
     "budo": "^4.1.0"
