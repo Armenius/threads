@@ -1,0 +1,80 @@
+<html>
+<!--    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>-->
+<script src="../js/main.js"></script>
+<script src="../js/particles.min.js"></script>
+<link rel="stylesheet" href="../css/style.css">
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+
+<!-- Optional theme -->
+<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
+
+<!-- Latest compiled and minified JavaScript -->
+<script src="//netdna.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+
+<link href="https://fonts.googleapis.com/css?family=Noto+Sans" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.3/socket.io.js"></script>
+<script
+        src="https://code.jquery.com/jquery-3.1.1.min.js"
+        integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
+        crossorigin="anonymous"></script>
+<body>
+
+<ul id="messages">
+    <li class="chat-cloud"> <strong> Parmenion: </strong>  asdsaaaaaaaaaaaaaaaaaaaaaaaaaaaa </li>
+</ul>
+
+<div class="send-message-box">
+    <!--<form action="">-->
+        <!--<textarea id="m" class="text-box"></textarea>-->
+        <!--<input type="button" value="Send" class="btn btn-default btn-block send-message-btn" onclick="">-->
+    <!--</form>-->
+    <form action="">
+        <input id="m" autocomplete="off"  title="sad"/><button>Send</button>
+    </form>
+</div>
+
+<script>
+    $(function () {
+        var socket = io();
+        $('form').submit(function(){
+            socket.emit('chat message', $('#m').val());
+            $('#m').val('');
+            return false;
+        });
+        socket.on('chat message', function(msg){
+            $('#messages').append($('<li class="chat-cloud">').text(msg));
+        });
+    });
+</script>
+
+<style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font: 13px Helvetica, Arial; }
+    form { background: #000; padding: 3px; position: fixed; bottom: 0; width: 100%; }
+    form input { border: 0; padding: 10px; width: 90%; margin-right: .5%; color:black }
+    form button { width: 9%; background: rgb(130, 224, 255); border: none; padding: 10px; }
+    #messages { list-style-type: none; margin: 0; padding: 0; }
+    #messages li { padding: 5px 10px; }
+    #messages li:nth-child(odd) { background: #eee; }
+</style>
+
+<script>
+    function showHint(str) {
+        if (str.length == 0) {
+            document.getElementById("txtHint").innerHTML = "";
+            return;
+        } else {
+            var xmlhttp = new XMLHttpRequest();
+            xmlhttp.onreadystatechange = function() {
+                if (this.readyState == 4 && this.status == 200) {
+                    document.getElementById("txtHint").innerHTML = this.responseText;
+                }
+            };
+            xmlhttp.open("GET", "test.php?str=" + str, true);
+            xmlhttp.send();
+        }
+    }
+</script>
+</body>
+</html>

@@ -40,16 +40,27 @@
     <div class="parallax" id="particles-js">
         <div class="register-form">
             <h1> Login  </h1>
-            <form method="post" action="../php/login.php" class="form">
-                <div class="form-group">
-                    <label for="email"> Email:</label>
-                    <input type="text" id="email" name="email" class="form-control">
+            <form method="post" action="../php/login.php">
+                <!--<div class="group">-->
+                    <!--<input type="text" required>-->
+                    <!--<span class="highlight"></span>-->
+                    <!--<span class="bar"></span>-->
+                    <!--<label>Enter message</label>-->
+                    <!--<i class="glyphicon glyphicon-earphone call"></i>-->
+                <!--</div>-->
+                <div class="group">
+                    <input type="text" id="email" name="email" class="stylized-input" required>
+                    <span class="highlight"></span>
+                    <span class="bar"></span>
+                    <label for="email" class="stylized-label"> Email:</label>
                 </div>
-                <div class="form-group">
-                    <label for="password"> Password:</label>
-                    <input type="password" id="password" name="password" class="form-control">
+                <div class="group">
+                    <input type="password" id="password" name="password" class="stylized-input" required>
+                    <span class="highlight"></span>
+                    <span class="bar"></span>
+                    <label for="password" class="stylized-label"> Password:</label>
                 </div>
-                <input type="button" value="Complete" class="btn btn-default"> <br> <br>
+                <input type="submit" value="Complete" class="stylized-button" required> <br> <br>
             </form>
         </div>
     </div>
