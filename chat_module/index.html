@@ -1,0 +1,86 @@
+<!doctype html>
+<html>
+<head>
+    <title>Socket.IO chat</title>
+    <link rel="stylesheet" type="text/css" href="semantic/dist/semantic.min.css">
+    <script
+            src="https://code.jquery.com/jquery-3.1.1.min.js"
+            integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
+            crossorigin="anonymous"></script>
+    <script src="semantic/dist/semantic.min.js"></script>
+
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
+
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="//netdna.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+
+    <link rel="stylesheet" href="chat.css">
+    <script type="application/javascript" src="index.js"></script>
+</head>
+<body>
+<ul class="chat-thread" id="messages" style="height: 85vh; overflow-y: auto">
+    <!--<li class="msg-from">Are we meeting today?</li>-->
+    <!--<li class="msg-to">yes, what time suits you?</li>-->
+    <!--<li class="msg-from">I was thinking after lunch, I have a meeting in the morning</li>-->
+    <!--<li class="msg-to">Are we meeting today?</li>-->
+    <!--<li class="msg-to">yes, what time suits you?</li>-->
+    <!--<li class="msg-from">I was thinking after lunch, I have a meeting in the morning</li>-->
+    <!--<li class="msg-to">Are we meeting today?</li>-->
+    <!--<li class="msg-to">yes, what time suits you?</li>-->
+    <!--<li class="msg-to">I was thinking after lunch, I have a meeting in the morning</li>-->
+    <!--<li class="msg-from">Are we meeting today?</li>-->
+    <!--<li class="msg-to">yes, what time suits you?</li>-->
+    <!--<li class="msg-to">I was thinking after lunch, I have a meeting in the morning</li>-->
+    <!--<li class="msg-to">Are we meeting today?</li>-->
+    <!--<li class="msg-from">yes, what time suits you?</li>-->
+    <!--<li class="msg-to">I was thinking after lunch, I have a meeting in the morningI was thinking after lunch, I have a meeting in the morningI was thinking after lunch, I have a meeting in the morningI was thinking after lunch, I have a meeting in the morningI was thinking after lunch, I have a meeting in the morningI was thinking after lunch, I have a meeting in the morningI was thinking after lunch, I have a meeting in the morningI was thinking after lunch, I have a meeting in the morningI was thinking after lunch, I have a meeting in the morningI was thinking after lunch, I have a meeting in the morning</li>-->
+    <!--<li class="msg-from">I was thinking after lunch, I have a meeting in the morningI was thinking after lunch, I have a meeting in the morningI was thinking after lunch, I have a meeting in the morningI was thinking after lunch, I have a meeting in the morningI was thinking after lunch, I have a meeting in the morningI was thinking after lunch, I have a meeting in the morningI was thinking after lunch, I have a meeting in the morningI was thinking after lunch, I have a meeting in the morning</li>-->
+    <!--<li class="msg-from">yes, what time suits you?</li><li class="msg-from">yes, what time suits you?</li><li class="msg-from">yes, what time suits you?</li><li class="msg-from">yes, what time suits you?</li>-->
+</ul>
+
+<div class="group" style="position: fixed;
+    left: 0;
+    bottom: 0; height: 5vh; background: transparent; width: 90%">
+    <form action="">
+        <input id="m" type="text" class="enter-msg-box" autocomplete="off" required>
+        <span class="highlight"></span>
+        <span class="bar"></span>
+        <label>Enter message</label>
+        <i class="glyphicon glyphicon-earphone call"></i>
+    </form>
+</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.3/socket.io.js"></script>
+
+<script type="text/javascript">
+    var arr = 0;
+
+    $(document).ready(function () {
+        var url = window.location.href;
+        console.log(url);
+        arr = url.split('?uuid=')[1];
+
+    });
+
+    $(function () {
+            var socket = io();
+            $('form').submit(function(){
+                socket.emit('chat message', $('#m').val());
+                $('#m').val('');
+                return false;
+            });
+            socket.on('chat message', function(msg, socket_id){
+                if(socket.id === socket_id)
+                    $('#messages').append($('<li class="msg-to">').text(msg));
+                else
+                    $('#messages').append($('<li class="msg-from">').text(msg));
+            });
+    });
+
+</script>
+
+</body>
+</html>

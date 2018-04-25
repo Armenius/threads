@@ -27,7 +27,9 @@ session_start();
     <link rel="stylesheet" href="../css/style.css">
     <link href="https://fonts.googleapis.com/css?family=Noto+Sans" rel="stylesheet">
 
-    <script src="../js/main.js"></script>
+    <script src="https://webrtc.github.io/adapter/adapter-latest.js"></script>
+
+<!--    <script src="../js/main.js"></script>-->
 <!--    <script src="../js/particles.min.js"></script>-->
 </head>
 <body>
@@ -77,14 +79,14 @@ session_start();
                     <img src=\"../media/".$data[$i][4]."\" class=\"friends-photo\">
                     <p class=\"friends-name\"> ".$data[$i][1]." </p> <div style='width: 7px; height: 7px; border-radius: 7px; background: #0EC879; position: absolute; margin-left: 95%; margin-top: 30px'></div>
                     <p class=\"last-message\"> Hello, i wanna to tok with u </p>
-                </div>";
+                    </div>";
                 }
                 else{
-                echo "<div class=\"friendsbar\" onclick=\"changeURL(document.getElementById('chat-frame'), '".$data[$i][9]."')\">
-                <img src=\"../media/".$data[$i][4]."\" class=\"friends-photo\">
-                <p class=\"friends-name\"> ".$data[$i][1]." </p>
-                <p class=\"last-message\"> Hello, i wanna to tok with u </p>
-            </div>";
+                    echo "<div class=\"friendsbar\" onclick=\"changeURL(document.getElementById('chat-frame'), '".$data[$i][9]."')\">
+                    <img src=\"../media/".$data[$i][4]."\" class=\"friends-photo\">
+                    <p class=\"friends-name\"> ".$data[$i][1]." </p>
+                    <p class=\"last-message\"> Hello, i wanna to tok with u </p>
+                    </div>";
                 }
             }
         ?>
@@ -101,7 +103,8 @@ session_start();
 
 <script>
     function changeURL(frame, uuid){
-        frame.src = "../php/chat.php?uuid=" + uuid;
+        // frame.src = "../php/chat.php?uuid=" + uuid;
+        frame.src = "//localhost:8080?uuid=" + uuid;
     }
 
     function showResult(str) {

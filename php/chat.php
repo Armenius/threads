@@ -69,7 +69,7 @@ require_once 'bd.php';
 <!--        <div class="name">Alex</div>-->
 <!--        <div class="last">18:09</div>-->
 <!--    </div>-->
-    <ul class="chat-thread">
+    <ul class="chat-thread" id="messages">
         <?  $result = $mysqli->query("SELECT * FROM `users` INNER JOIN `relations` ON users.id = relations.id_from WHERE uuid='".$_GET['uuid']."' AND relations.id_to=".$_SESSION['id'].";");
             $data = $result->fetch_all(PDO::FETCH_ASSOC);
             for($i = 0; $i < count($data); $i++) {
@@ -98,12 +98,29 @@ require_once 'bd.php';
     </ul>
 
     <div class="group">
-        <input type="text" class="enter-msg-box" required>
+        <input id="m" type="text" class="enter-msg-box" required>
         <span class="highlight"></span>
         <span class="bar"></span>
         <label>Enter message</label>
         <i class="glyphicon glyphicon-earphone call"></i>
     </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.3/socket.io.js"></script>
+
+    <script>
+
+        $(function () {
+            var socket = io();
+            $('form').submit(function(){
+                socket.emit('chat message', $('#m').val());
+                $('#m').val('');
+                return false;
+            });
+            socket.on('chat message', function(msg){
+                $('#messages').append($('<li style="margin-left: 300px">').text(msg));
+            });
+        });
+    </script>
 
 
         <script>
