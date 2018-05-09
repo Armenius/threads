@@ -29,8 +29,8 @@ session_start();
 
     <script src="https://webrtc.github.io/adapter/adapter-latest.js"></script>
 
-<!--    <script src="../js/main.js"></script>-->
-<!--    <script src="../js/particles.min.js"></script>-->
+    <script src="../js/main.js"></script>
+    <script src="../js/particles.min.js"></script>
 </head>
 <body>
 
@@ -98,13 +98,13 @@ session_start();
     </div>
 </div>
 
-<iframe class="chat-box" id="chat-frame" src=""> </iframe>
+<iframe class="chat-box" id="chat-frame" src="" allow="microphone, camera"> </iframe>
 <!--</div>-->
 
 <script>
     function changeURL(frame, uuid){
         // frame.src = "../php/chat.php?uuid=" + uuid;
-        frame.src = "//localhost:8080?uuid=" + uuid;
+        frame.src = "https://localhost:8080?uuid=" + uuid;
     }
 
     function showResult(str) {
