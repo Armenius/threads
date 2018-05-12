@@ -2,12 +2,10 @@
 <html>
 <head>
     <title>Socket.IO chat</title>
-    <link rel="stylesheet" type="text/css" href="semantic/dist/semantic.min.css">
     <script
             src="https://code.jquery.com/jquery-3.1.1.min.js"
             integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
             crossorigin="anonymous"></script>
-    <script src="semantic/dist/semantic.min.js"></script>
 
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
@@ -19,27 +17,23 @@
     <script src="//netdna.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
 
     <link rel="stylesheet" href="chat.css">
-    <script type="application/javascript" src="index.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.3/socket.io.js"></script>
+    <script src="https://webrtc.github.io/adapter/adapter-latest.js"></script>
+    <script id="server" type="application/javascript" data-src="123asd" src="index.js"></script>
+
 </head>
 <body>
-<ul class="chat-thread" id="messages" style="height: 85vh; overflow-y: auto">
-    <!--<li class="msg-from">Are we meeting today?</li>-->
-    <!--<li class="msg-to">yes, what time suits you?</li>-->
-    <!--<li class="msg-from">I was thinking after lunch, I have a meeting in the morning</li>-->
-    <!--<li class="msg-to">Are we meeting today?</li>-->
-    <!--<li class="msg-to">yes, what time suits you?</li>-->
-    <!--<li class="msg-from">I was thinking after lunch, I have a meeting in the morning</li>-->
-    <!--<li class="msg-to">Are we meeting today?</li>-->
-    <!--<li class="msg-to">yes, what time suits you?</li>-->
-    <!--<li class="msg-to">I was thinking after lunch, I have a meeting in the morning</li>-->
-    <!--<li class="msg-from">Are we meeting today?</li>-->
-    <!--<li class="msg-to">yes, what time suits you?</li>-->
-    <!--<li class="msg-to">I was thinking after lunch, I have a meeting in the morning</li>-->
-    <!--<li class="msg-to">Are we meeting today?</li>-->
-    <!--<li class="msg-from">yes, what time suits you?</li>-->
-    <!--<li class="msg-to">I was thinking after lunch, I have a meeting in the morningI was thinking after lunch, I have a meeting in the morningI was thinking after lunch, I have a meeting in the morningI was thinking after lunch, I have a meeting in the morningI was thinking after lunch, I have a meeting in the morningI was thinking after lunch, I have a meeting in the morningI was thinking after lunch, I have a meeting in the morningI was thinking after lunch, I have a meeting in the morningI was thinking after lunch, I have a meeting in the morningI was thinking after lunch, I have a meeting in the morning</li>-->
-    <!--<li class="msg-from">I was thinking after lunch, I have a meeting in the morningI was thinking after lunch, I have a meeting in the morningI was thinking after lunch, I have a meeting in the morningI was thinking after lunch, I have a meeting in the morningI was thinking after lunch, I have a meeting in the morningI was thinking after lunch, I have a meeting in the morningI was thinking after lunch, I have a meeting in the morningI was thinking after lunch, I have a meeting in the morning</li>-->
-    <!--<li class="msg-from">yes, what time suits you?</li><li class="msg-from">yes, what time suits you?</li><li class="msg-from">yes, what time suits you?</li><li class="msg-from">yes, what time suits you?</li>-->
+
+<ul class="chat-thread" id="messages" style="height: 85vh; overflow-y: auto;">
+    <div id="videos">
+        <video id="localVideo" autoplay muted></video>
+        <video id="remoteVideo" autoplay></video>
+    </div>
+
+    <span id="hangup" class="glyphicon glyphicon-remove-circle"></span>
+    <!--<button value="startCall" id="startCall" onclick="startCall(0)"> Start Call </button>-->
+    <!--<button value="hangup" id="hangup" onclick="hangup()" style="display: none"> Hangup</button>-->
 </ul>
 
 <div class="group" style="position: fixed;
@@ -50,37 +44,42 @@
         <span class="highlight"></span>
         <span class="bar"></span>
         <label>Enter message</label>
-        <i class="glyphicon glyphicon-earphone call"></i>
+        <i class="glyphicon glyphicon-earphone call" value="startCall" id="startCall"></i>
     </form>
 </div>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.3/socket.io.js"></script>
 
+<script type="text/javascript" src="chat.js"> </script>
 <script type="text/javascript">
-    var arr = 0;
+    var myLink = document.getElementById('startCall');
 
-    $(document).ready(function () {
-        var url = window.location.href;
-        console.log(url);
-        arr = url.split('?uuid=')[1];
-
-    });
-
-    $(function () {
-            var socket = io();
-            $('form').submit(function(){
-                socket.emit('chat message', $('#m').val());
-                $('#m').val('');
-                return false;
+    myLink.onclick = function(){
+        var script = document.createElement("script");
+        script.type = "text/javascript";
+        script.src = "videochat.js";
+        document.getElementsByTagName("head")[0].appendChild(script);
+        var hangup = document.getElementById('hangup');
+        hangup.onclick = function () {
+            console.log('Hanging up.');
+            stop();
+            sendMessage('bye');
+            document.getElementById('startCall').style.display = 'block';
+            document.getElementById('localVideo').style.display = 'none';
+            document.getElementById('remoteVideo').style.display = 'none';
+            document.getElementById('hangup').style.display = 'none';
+            document.getElementById('videos').style.display = 'none';
+            localStream.getTracks().forEach(function(track) {
+                track.stop();
             });
-            socket.on('chat message', function(msg, socket_id){
-                if(socket.id === socket_id)
-                    $('#messages').append($('<li class="msg-to">').text(msg));
-                else
-                    $('#messages').append($('<li class="msg-from">').text(msg));
-            });
-    });
-
+            // remoteStream.getTracks().forEach(function(track) {
+            //     track.stop();
+            // });
+            // localStream.stop();
+        };
+        return false;
+    };
 </script>
+
+
 
 </body>
 </html>

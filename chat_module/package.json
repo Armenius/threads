@@ -4,6 +4,8 @@
   "description": "my first socket.io app",
   "dependencies": {
     "express": "^4.15.2",
+    "express-http-to-https": "^1.1.4",
+    "https": "^1.0.0",
     "jsencrypt": "^3.0.0-beta.1",
     "keypair": "^1.0.1",
     "node-static": "^0.7.10",

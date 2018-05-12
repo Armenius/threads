@@ -139,15 +139,15 @@ label 				 {
 
 }
 
-/* Chat - Avatar */
-.msg-to:before, .msg-from:before {
-    position: absolute;
-    top: 0;
-    width: 50px;
-    height: 50px;
-    border-radius: 50px;
-    content: '';
-}
+/*!* Chat - Avatar *!*/
+/*.msg-to:before, .msg-from:before {*/
+    /*position: absolute;*/
+    /*top: 0;*/
+    /*width: 50px;*/
+    /*height: 50px;*/
+    /*border-radius: 50px;*/
+    /*content: '';*/
+/*}*/
 
 /* Chat - Speech Bubble Arrow */
 .msg-to:after, .msg-from:after {
@@ -248,3 +248,80 @@ ul::-webkit-scrollbar-thumb {
     background: white;
     /*opacity: 0.8;*/
 }
+
+/* VIDEO CHAT */
+#remoteVideo, #videos{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    /*float: left;*/
+    z-index: 4;
+    display: none;
+}
+
+#localVideo{
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    min-width: 100px;
+    max-width: 300px;
+    min-height: 100px;
+    max-height: 150px;
+    background: transparent;
+    z-index: 5;
+    display: none;
+    border: #0AD5C1 1px solid;
+}
+
+#hangup{
+    position: absolute;
+    top: 90%;
+    right: 50%;
+    font-size: 4em;
+    color: red;
+    opacity: 0.8;
+    z-index: 5;
+    display: none;
+}
+
+#hangup:hover{
+    opacity: 1;
+}
+
+/*#hangup, #hangup-box {*/
+    /*!*position: relative;*!*/
+    /*margin-left: auto;*/
+    /*right: 50px;*/
+    /*top: 50px;*/
+    /*width: 50px;*/
+    /*height: 50px;*/
+    /*opacity: 0.8;*/
+    /*z-index: 5;*/
+/*}*/
+/*#hangup:hover, #hangup-box:hover {*/
+    /*opacity: 1;*/
+    /*cursor: pointer;*/
+/*}*/
+/*#hangup:before, #hangup:after {*/
+    /*position: absolute;*/
+    /*left: 15px;*/
+    /*content: ' ';*/
+    /*height: 40px;*/
+    /*width: 3px;*/
+    /*background-color: red;*/
+/*}*/
+/*#hangup:before {*/
+    /*transform: rotate(45deg);*/
+/*}*/
+/*#hangup:after {*/
+    /*transform: rotate(-45deg);*/
+/*}*/
+
+/*#hangup-box{*/
+    /*position: absolute;*/
+    /*color: transparent;*/
+    /*border: red 3px solid;*/
+    /*border-radius: 32px;*/
+/*}*/
