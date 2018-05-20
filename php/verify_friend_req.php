@@ -34,3 +34,5 @@ if ( !file_exists( "C:\\Users\\".getenv("username")."\\Downloads\\Threads\\".$_G
 $mysqli->query("UPDATE relations SET relations.is_verified=1 WHERE uuid='" . $_GET['uuid'] . "';");
 
 $mysqli->close();
+
+echo '<script>location.replace("window.php");</script>';

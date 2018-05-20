@@ -74,10 +74,18 @@ session_start();
             $result = $mysqli->query("SELECT * FROM `users` INNER JOIN `relations` ON users.id = relations.id_to WHERE relations.id_from=".$_SESSION["id"]." UNION SELECT * FROM `users` INNER JOIN `relations` ON users.id = relations.id_from WHERE relations.id_to=".$_SESSION["id"].";");
             $data = $result->fetch_all();
             for($i = 0; $i < count($data); $i++){
-                if($data[$i][10] == 0){
-                    echo "<div class=\"friendsbar\" onclick=\"changeURL(document.getElementById('chat-frame'), '".$data[$i][9]."')\">
+                if($data[$i][10] == 0 && $_SESSION['id'] != $data[$i][8]){
+                    echo "<div class=\"friendsbar\" ".$data[$i][9].">
                     <img src=\"../media/".$data[$i][4]."\" class=\"friends-photo\">
-                    <p class=\"friends-name\"> ".$data[$i][1]." </p> <div style='width: 7px; height: 7px; border-radius: 7px; background: #0EC879; position: absolute; margin-left: 95%; margin-top: 30px'></div>
+                    <p class=\"friends-name\"> ".$data[$i][1]." </p>
+                    <p class=\"last-message\"> Hello, i wanna to tok with u </p>
+                    </div>";
+                }
+                else if($data[$i][10] == 0 && $_SESSION['id'] == $data[$i][8]){
+                    echo "<div class=\"friendsbar\" ".$data[$i][9].">
+                    <img src=\"../media/".$data[$i][4]."\" class=\"friends-photo\">
+                    <p class=\"friends-name\"> ".$data[$i][1]." </p>
+                    <form method='post' class='add-friend-form' action='verify_friend_req.php?uuid=".$data[$i][9]."&fid=".$data[$i][8]."'> <input type='submit' name='Accept' class='accept-friends-req' value='ACCEPT NEW REQUEST'> </form>
                     <p class=\"last-message\"> Hello, i wanna to tok with u </p>
                     </div>";
                 }

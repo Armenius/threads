@@ -261,6 +261,23 @@ a{
     margin-top: 20px;
 }
 
+.add-friend-form{
+    position: absolute;
+    right: 10%;
+    z-index: 10;
+}
+
+.accept-friends-req{
+    background: transparent;
+    border: white 1px solid;
+    border-radius: 5px;
+}
+
+.accept-friends-req:hover{
+    background: white;
+    color: black;
+}
+
 .last-message{
     position: absolute;
     margin-left: 85px;
