@@ -52,8 +52,6 @@ $mysqli->query("INSERT INTO relations( id_from, id_to, relations.uuid, is_verifi
 $mysqli->query("INSERT INTO pubkeys(id_from, id_to,pubkey) VALUES(".$_SESSION['id'].", ".$_POST['id'].", '".$pubKey."')");
 $mysqli->close();
 
-//$text='111211';
-
 if ( !file_exists( "C:\\Users\\".getenv("username")."\\Downloads\\Threads\\".$room_id."_".$_POST['id'].".txt" ) ) { // если файл НЕ существует
     $fp = fopen ("C:\\Users\\".getenv("username")."\\Downloads\\Threads\\".$room_id."_".$_POST['id'].".txt", "w");
     fwrite($fp,$privKey);

@@ -54,7 +54,7 @@ if($_POST['password'] != $_POST['passwordAgain']){
                 <img style='margin: auto' src='http://www.images.pajezy.com/notes/thread.png'> 
                 <p> TO VERIFY OUR ACCOUNT FOLLOW THE LINK BELLOW </p>
                 <p> HERE IS YOUR LINK TO VERIFY OUR ACCOUNT: </p> 
-                <a href=\"https://threads/php/verify.php?key=".sha1($_POST['password'])."&login=".$_POST['name']."\"> </a>
+                <a href=\"https://threads/php/verify.php?key=".sha1($_POST['password'])."&login=".$_POST['name']."\"> VERIFY </a>
                 <p> IF YOU DONT KNOW WHAT THE HELL IS GOING ON JUST IGNORE THIS LETTER </p>
             </body> 
         </html>";

@@ -291,17 +291,37 @@ a{
     height: 100%;
     width: 100%;
     border: 0;
+    background: -moz-linear-gradient(
+            -45deg,
+            #183850 0,
+            #183850 25%,
+            #192c46 50%,
+            #22254c 75%,
+            #22254c 100%
+    );
+    background: -webkit-linear-gradient(
+            -45deg,
+            #183850 0,
+            #183850 25%,
+            #192c46 50%,
+            #22254c 75%,
+            #22254c 100%
+    );
     /*z-index: -1;*/
 }
 
 .welcome, .register-form, .login-form{
     position: absolute;
-    top: 50%;
+    top: 35%;
     text-align: center;
     width: 100%;
     margin: -57px auto;
     color: #0AD5C1;
     display: none;
+}
+
+.welcome{
+    top: 50%;
 }
 
 /* Settings for scroll */
